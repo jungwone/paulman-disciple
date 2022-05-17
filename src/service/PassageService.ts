@@ -22,10 +22,10 @@ export default class PassageService {
    * 이번주 암송 데이터 얻어오기
    */
   getPassagesForThisWeek() {
-    const today = moment();
+    const today = moment().format("YYYY-MM-DD");
 
     return this.passages.filter((passage) =>
-      this.findPassagesForThisWeek(today, passage)
+      this.findPassagesForThisWeek(moment(today), passage)
     );
   }
 }
