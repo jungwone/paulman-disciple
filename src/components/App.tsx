@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Passages, { Passage } from "../data";
 import AllPassages from "../routes/AllPassages";
@@ -22,19 +23,25 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route
-          index
-          element={<PassagesForThisWeek passages={passagesForThisWeek} />}
-        />
-        <Route path="/test/:id" element={<PassageTest />} />
-        <Route
-          path="/passages"
-          element={<AllPassages passages={allPassages} />}
-        />
-      </Routes>
+      <Main>
+        <Routes>
+          <Route
+            index
+            element={<PassagesForThisWeek passages={passagesForThisWeek} />}
+          />
+          <Route path="/test/:id" element={<PassageTest />} />
+          <Route
+            path="/passages"
+            element={<AllPassages passages={allPassages} />}
+          />
+        </Routes>
+      </Main>
     </div>
   );
 }
 
 export default App;
+
+const Main = styled.main`
+  padding-top: 74px;
+`;

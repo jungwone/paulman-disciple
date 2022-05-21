@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 import PassageCard from "../components/PassageCard";
 import { Passage } from "../data";
 
@@ -28,7 +27,6 @@ export default AllPassages;
 
 const Wrapper = styled.div``;
 const Notice = styled.div`
-  margin: 24px 0px;
   padding: 1em;
   text-align: left;
 `;

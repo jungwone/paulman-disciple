@@ -50,6 +50,10 @@ const HeaderWrapper = styled.header`
   grid-template-columns: 1fr 3fr 1fr;
   padding-top: 0.5em;
   margin-bottom: 24px;
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
+  top: 0;
 `;
 
 const InnerSection = styled.section`
