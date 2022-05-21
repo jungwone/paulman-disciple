@@ -12,9 +12,11 @@ const passageService = new PassageService(Passages);
 
 function App() {
   const [passagesForThisWeek, setPassagesForThisWeek] = useState<Passage[]>([]);
+  const [allPassages, setAllPassages] = useState<Passage[]>([]);
 
   useEffect(() => {
     setPassagesForThisWeek(passageService.getPassagesForThisWeek());
+    setAllPassages(passageService.getAllPassages());
   }, []);
 
   return (
@@ -26,7 +28,10 @@ function App() {
           element={<PassagesForThisWeek passages={passagesForThisWeek} />}
         />
         <Route path="/test/:id" element={<PassageTest />} />
-        <Route path="/passages" element={<AllPassages />} />
+        <Route
+          path="/passages"
+          element={<AllPassages passages={allPassages} />}
+        />
       </Routes>
     </div>
   );

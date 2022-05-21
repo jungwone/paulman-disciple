@@ -28,4 +28,9 @@ export default class PassageService {
       this.findPassagesForThisWeek(moment(today), passage)
     );
   }
+
+  /** 전체 암송 구절 얻어오기 */
+  getAllPassages() {
+    return this.passages;
+  }
 }
