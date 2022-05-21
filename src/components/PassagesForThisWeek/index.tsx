@@ -1,6 +1,6 @@
-import React from "react";
 import { Passage } from "../../data";
 import PassageCard from "../PassageCard";
+import styled from "@emotion/styled";
 
 interface Props {
   passages: Passage[];
@@ -8,18 +8,22 @@ interface Props {
 
 const PassagesForThisWeek = ({ passages }: Props) => {
   return (
-    <div>
-      <h2>이번주 암송 구절</h2>
+    <Wrapper>
+      <h2>이번주 암송✨</h2>
 
-      <ul>
+      <ul style={{ textAlign: "center" }}>
         {passages.map((passage) => (
           <li key={passage.address}>
             <PassageCard passage={passage} />
           </li>
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
 };
 
 export default PassagesForThisWeek;
+
+const Wrapper = styled.div`
+  margin-top: 2rem;
+`;
