@@ -71,7 +71,7 @@ const Wrapper = styled.div`
   width: 70vw;
   height: 100vh;
   transition: all 0.35s ease;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   padding-top: 20px;
