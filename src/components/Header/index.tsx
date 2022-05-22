@@ -52,6 +52,7 @@ const HeaderWrapper = styled.header`
   margin-bottom: 24px;
   position: fixed;
   width: 100%;
+  max-width: 500px;
   background-color: #fff;
   top: 0;
 `;
