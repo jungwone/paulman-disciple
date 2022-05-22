@@ -11,14 +11,29 @@ import PassagesForThisWeek from "./PassagesForThisWeek";
 
 const passageService = new PassageService(Passages);
 
+export type ClassType = "sunday" | "tuesday";
+
 function App() {
   const [passagesForThisWeek, setPassagesForThisWeek] = useState<Passage[]>([]);
   const [allPassages, setAllPassages] = useState<Passage[]>([]);
+  const [classType, setClassType] = useState<ClassType>("sunday");
 
   useEffect(() => {
-    setPassagesForThisWeek(passageService.getPassagesForThisWeek());
-    setAllPassages(passageService.getAllPassages());
+    const classType = localStorage.getItem("classType");
+    if (classType) {
+      setClassType(classType as ClassType);
+    }
   }, []);
+
+  useEffect(() => {
+    setPassagesForThisWeek(passageService.getPassagesForThisWeek(classType));
+    setAllPassages(passageService.getAllPassages());
+  }, [classType]);
+
+  const onClickClassType = (value: ClassType) => {
+    setClassType(value);
+    localStorage.setItem("classType", value);
+  };
 
   return (
     <div className="App">
@@ -27,7 +42,13 @@ function App() {
         <Routes>
           <Route
             index
-            element={<PassagesForThisWeek passages={passagesForThisWeek} />}
+            element={
+              <PassagesForThisWeek
+                passages={passagesForThisWeek}
+                classType={classType}
+                onClickClassType={onClickClassType}
+              />
+            }
           />
           <Route path="/test/:id" element={<PassageTest />} />
           <Route
