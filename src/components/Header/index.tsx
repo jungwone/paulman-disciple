@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoImage from "../../assets/logo.svg";
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBarsStaggered,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import SlideMenu from "../SlideMenu";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [isSlideMenuVisible, setIsSlideMenuVisible] = useState(false);
 
   const onClickMenuBar = () => {
@@ -20,7 +27,17 @@ const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <InnerSection></InnerSection>
+        <InnerSection>
+          {location.pathname !== "/" && (
+            <button
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} size={"2x"} />
+            </button>
+          )}
+        </InnerSection>
         <div>
           <Link to={"/"}>
             <img src={LogoImage} alt="paul man" width={80} />
@@ -55,6 +72,12 @@ const HeaderWrapper = styled.header`
   max-width: 500px;
   background-color: #fff;
   top: 0;
+
+  button {
+    outline: none;
+    background-color: #fff;
+    border: none;
+  }
 `;
 
 const InnerSection = styled.section`
