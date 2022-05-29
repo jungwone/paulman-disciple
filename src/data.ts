@@ -334,6 +334,27 @@ const Passages: Passage[] = [
     t_startDate: "20220525",
     t_endDate: "20220531",
   },
+
+  {
+    id: "33",
+    address: "디도서 3:5",
+    content:
+      "우리를 구원하시되 우리가 행한 바 의로운 행위로 말미암지 아니하고 오직 그의 긍휼하심을 따라 중생의 씻음과 성령의 새롭게 하심으로 하셨나니",
+    startDate: "20220530",
+    endDate: "20220605",
+    t_startDate: "20220601",
+    t_endDate: "20220607",
+  },
+  {
+    id: "34",
+    address: "데살로니가전서 1:3-4",
+    content:
+      "너희의 믿음의 역사와 사랑의 수고와 우리 주 예수 그리스도에 대한 소망의 인내를 우리 하나님 아버지 앞에서 끊임없이 기억함이니 하나님의 사랑하심을 받은 형제들아 너희를 택하심을 아노라",
+    startDate: "20220530",
+    endDate: "20220605",
+    t_startDate: "20220601",
+    t_endDate: "20220607",
+  },
 ];
 
 export default Passages;
