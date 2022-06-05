@@ -355,6 +355,27 @@ const Passages: Passage[] = [
     t_startDate: "20220601",
     t_endDate: "20220607",
   },
+
+  {
+    id: "35",
+    address: "에베소서 2:8-9",
+    content:
+      "너희는 그 은혜에 의하여 믿음으로 말미암아 구원을 받았으니 이것은 너희에게서 난 것이 아니요 하나님의 선물이라 행위에서 난 것이 아니니 이는 누구든지 자랑하지 못하게 함이라",
+    startDate: "20220606",
+    endDate: "20220612",
+    t_startDate: "20220608",
+    t_endDate: "20220614",
+  },
+  {
+    id: "36",
+    address: "로마서 4:18",
+    content:
+      "아브라함이 바랄 수 없는 중에 바라고 믿었으니 이는 네 후손이 이같으리라 하신 말씀대로 많은 민족의 조상이 되게 하려 하심이라",
+    startDate: "20220606",
+    endDate: "20220612",
+    t_startDate: "20220608",
+    t_endDate: "20220614",
+  },
 ];
 
 export default Passages;
