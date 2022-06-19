@@ -397,6 +397,27 @@ const Passages: Passage[] = [
     t_startDate: "20220615",
     t_endDate: "20220621",
   },
+
+  {
+    id: "39",
+    address: "고린도후서 7:1",
+    content:
+      "그런즉 사랑하는 자들아 이 약속을 가진 우리는 하나님을 두려워하는 가운데서 거룩함을 온전히 이루어 육과 영의 온갖 더러운 것에서 자신을 깨끗하게 하자",
+    startDate: "20220620",
+    endDate: "20220626",
+    t_startDate: "20220622",
+    t_endDate: "20220628",
+  },
+  {
+    id: "40",
+    address: "요한일서 3:3",
+    content:
+      "주를 향하여 이 소망을 가진 자마다 그의 깨끗하심과 같이 자기를 깨끗하게 하느니라",
+    startDate: "20220620",
+    endDate: "20220626",
+    t_startDate: "20220622",
+    t_endDate: "20220628",
+  },
 ];
 
 export default Passages;
