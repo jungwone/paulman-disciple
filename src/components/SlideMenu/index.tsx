@@ -4,6 +4,7 @@ import {
   faXmark,
   faHouse,
   faBookOpen,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -58,6 +59,14 @@ const SlideMenu = ({ show, onCloseSideMenu }: Props) => {
             style={{ marginRight: "10px" }}
           />
           암송구절 전체보기
+        </LinkButton>
+        <LinkButton to={"/manage"} onClick={onCloseSideMenu}>
+          <FontAwesomeIcon
+            icon={faPen}
+            size={"1x"}
+            style={{ marginRight: "10px" }}
+          />
+          암송구절 관리(반장)
         </LinkButton>
       </LinkSection>
     </Wrapper>

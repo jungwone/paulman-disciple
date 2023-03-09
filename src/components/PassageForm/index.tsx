@@ -30,7 +30,9 @@ const PassageForm = ({
     content: passage?.content || "",
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setPassageData({
       ...passageData,
       [e.target.name]: e.target.value,
@@ -39,7 +41,6 @@ const PassageForm = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     if (mode === "add") {
       handleAddPassage();
     } else {
@@ -118,11 +119,12 @@ const PassageForm = ({
             mb={4}
             mt={4}
             defaultValue={passageData.content}
+            onChange={handleInputChange}
           />
         </div>
         <Box textAlign={"right"}>
           <Button backgroundColor="#f5566c" color={"#fff"} type="submit">
-            업데이트
+            {buttonText}
           </Button>
         </Box>
       </form>

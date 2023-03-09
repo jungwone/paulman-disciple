@@ -9,9 +9,7 @@ interface Props {
 const AllPassages = ({ passages }: Props) => {
   return (
     <Wrapper>
-      <Notice>
-        추후 조금씩 개편 예정입니다. 필요한게 있다면 말씀해주세요 :)
-      </Notice>
+      <Notice>공지사항:</Notice>
       <ul style={{ textAlign: "center" }}>
         {passages.map((passage) => (
           <li key={passage.address}>
