@@ -72,7 +72,7 @@ const PassageForm = ({
           <Week>
             <WeekText>목요일반</WeekText>
             <DateSection>
-              <label>시작 날짜</label>
+              <label>암송 시작 날짜</label>
               <Input
                 name="start_date_a"
                 type={"date"}
@@ -81,7 +81,7 @@ const PassageForm = ({
               />
             </DateSection>
             <DateSection>
-              <label>종료 날짜</label>
+              <label>테스트 날짜</label>
               <Input
                 name="end_date_a"
                 type={"date"}
@@ -94,7 +94,7 @@ const PassageForm = ({
           <Week>
             <WeekText>주일반</WeekText>
             <DateSection>
-              <label>시작 날짜</label>
+              <label>암송 시작 날짜</label>
               <Input
                 name="start_date_b"
                 type={"date"}
@@ -103,7 +103,7 @@ const PassageForm = ({
               />
             </DateSection>
             <DateSection>
-              <label>종료 날짜</label>
+              <label>테스트 날짜</label>
               <Input
                 name="end_date_b"
                 type={"date"}
