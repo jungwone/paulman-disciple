@@ -73,6 +73,7 @@ const HeaderWrapper = styled.header`
   max-width: 500px;
   background-color: #fff;
   top: 0;
+  z-index: 10;
 
   button {
     outline: none;

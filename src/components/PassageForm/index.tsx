@@ -39,7 +39,6 @@ const PassageForm = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(passageData);
 
     if (mode === "add") {
       handleAddPassage();

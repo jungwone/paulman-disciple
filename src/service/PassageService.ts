@@ -73,13 +73,6 @@ class PassageService {
   getPassagesForThisWeek(classType: ClassType, passages: Passage[]) {
     const today = moment().format("YYYY-MM-DD");
 
-    console.log(
-      "hey",
-      passages.filter((passage) =>
-        this.isPassageForThisWeek(moment(today), passage, classType)
-      )
-    );
-
     return passages.filter((passage) =>
       this.isPassageForThisWeek(moment(today), passage, classType)
     );
