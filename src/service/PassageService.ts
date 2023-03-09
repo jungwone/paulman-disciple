@@ -5,6 +5,8 @@ import {
   doc,
   addDoc,
   updateDoc,
+  query,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import {
@@ -96,7 +98,8 @@ class PassageService {
    * 전체 암송 데이터 fetch
    */
   async getPassages() {
-    const data = await getDocs(this.passagesRef);
+    const q = query(this.passagesRef, orderBy("start_date_a", "desc"));
+    const data = await getDocs(q);
     const docs = data.docs.map((doc) => {
       return {
         ...doc.data(),

@@ -4,7 +4,6 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
@@ -14,7 +13,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import PassageService from "../service/PassageService";
-import { Passage, UpdatePassageRequest } from "../types";
+import { AddPassageRequest, Passage, UpdatePassageRequest } from "../types";
 
 interface Props {
   passages: Passage[];
@@ -47,9 +46,33 @@ const Manage = ({ passages = [], refetchPassages }: Props) => {
     }
   };
 
+  const addPassage = async (data: AddPassageRequest) => {
+    try {
+      await PassageService.addPassage(data);
+      const result = await PassageService.getPassages();
+      refetchPassages(result);
+
+      toast({
+        title: "암송 구절 추가 완료",
+        description: "🎈",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
+    } catch (error) {
+      toast({
+        description: "오류가 발생했습니다.",
+        status: "error",
+      });
+      console.error(error);
+    }
+  };
+
   return (
     <Box px={8}>
       <Heading as={"h1"}>암송 리스트 관리</Heading>
+      <span>(최신순으로 정렬됩니다)</span>
       <main>
         <Box my={4} textAlign="right">
           <Button onClick={onOpen} backgroundColor="#f5566c" color={"#fff"}>
@@ -58,12 +81,13 @@ const Manage = ({ passages = [], refetchPassages }: Props) => {
         </Box>
         <ul>
           {passages.map((passage) => (
-            <PassageForm
-              key={passage.id}
-              passage={passage}
-              mode="update"
-              updatePassage={updatePassage}
-            />
+            <li key={passage.id} style={{ marginBottom: "16px" }}>
+              <PassageForm
+                passage={passage}
+                mode="update"
+                updatePassage={updatePassage}
+              />
+            </li>
           ))}
         </ul>
       </main>
@@ -72,10 +96,9 @@ const Manage = ({ passages = [], refetchPassages }: Props) => {
         <ModalContent>
           <ModalHeader>암송 구절 추가하기</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>ㄹㄴㅇㄹㄴㅇㅁㄹㅁㅇㄴㄹㅁㄴ</ModalBody>
-          <ModalFooter>
-            <Button>추가</Button>
-          </ModalFooter>
+          <ModalBody>
+            <PassageForm mode="add" addPassage={addPassage} />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Box>
