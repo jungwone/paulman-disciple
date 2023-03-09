@@ -3,11 +3,16 @@ import { css } from "@emotion/react";
 import { Diff, DiffMatchPatch } from "diff-match-patch-ts";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Passages, { Passage } from "../data";
+import { Passage } from "../types";
+import { Textarea } from "@chakra-ui/react";
 
 const diff = new DiffMatchPatch();
 
-const PassageTest = () => {
+interface Props {
+  passages: Passage[];
+}
+
+const PassageTest = ({ passages }: Props) => {
   const { id = "" } = useParams<{ id: string }>();
   const [text, setText] = useState("");
   const [passage, setPassage] = useState<Passage>();
@@ -17,7 +22,6 @@ const PassageTest = () => {
   const onCheckPassage = () => {
     if (!passage) return;
     const diffResult = diff.diff_main(passage.content, text);
-    console.log(diffResult);
     setResult(diffResult);
     setIsSubmitted(true);
   };
@@ -28,17 +32,20 @@ const PassageTest = () => {
   };
 
   useEffect(() => {
-    const passage = Passages.find((passage) => passage.id === id);
+    const passage = passages.find((passage) => passage.id === id);
     setPassage(passage);
-  }, [id]);
+  }, [id, passages]);
 
   return (
     <Wrapper>
       <Address>{passage?.address}</Address>
       {!isSubmitted && (
         <>
-          <TextArea
+          <Textarea
             value={text}
+            minHeight={"200px"}
+            width={"100%"}
+            placeholder="암송이라는 행위 자체에만 집중하기보다 말씀을 묵상하고 순종하는 복을 누리시길 축복합니다❤️"
             onChange={(e) => {
               setText(e.target.value);
             }}
@@ -93,11 +100,6 @@ const Wrapper = styled.div`
 const Address = styled.div`
   font-weight: bold;
   margin-bottom: 32px;
-`;
-
-const TextArea = styled.textarea`
-  width: 100%;
-  min-height: 200px;
 `;
 
 const Content = styled.pre`

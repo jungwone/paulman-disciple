@@ -1,10 +1,29 @@
 import moment, { Moment } from "moment";
-import { ClassType } from "../components/App";
-import { Passage } from "../data";
+import {
+  collection,
+  getDocs,
+  doc,
+  addDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
+import {
+  AddPassageRequest,
+  ClassType,
+  Passage,
+  UpdatePassageRequest,
+} from "../types";
 
-export default class PassageService {
-  constructor(private passages: Passage[]) {}
+class PassageService {
+  private passagesRef;
 
+  constructor() {
+    this.passagesRef = collection(db, "passages");
+  }
+
+  /**
+   * 암송 시작 날짜랑 종료 날짜 얻어오기
+   */
   private getStartAndEndDateByClassType(
     passage: Passage,
     classType: ClassType
@@ -12,12 +31,12 @@ export default class PassageService {
     let startDate = "";
     let endDate = "";
 
-    if (classType === "sunday") {
-      startDate = passage.startDate;
-      endDate = passage.endDate;
+    if (classType === "thursday") {
+      startDate = passage.start_date_a;
+      endDate = passage.end_date_b;
     } else {
-      startDate = passage.t_startDate;
-      endDate = passage.t_endDate;
+      startDate = passage.start_date_b;
+      endDate = passage.end_date_b;
     }
 
     return { startDate, endDate };
@@ -26,7 +45,7 @@ export default class PassageService {
   /**
    * 이번주 기간에 해당하는 암송 구절 찾기
    */
-  private findPassagesForThisWeek(
+  private isPassageForThisWeek(
     today: Moment,
     passage: Passage,
     classType: ClassType
@@ -49,16 +68,48 @@ export default class PassageService {
   /**
    * 이번주 암송 데이터 얻어오기
    */
-  getPassagesForThisWeek(classType: ClassType) {
+  getPassagesForThisWeek(classType: ClassType, passages: Passage[]) {
     const today = moment().format("YYYY-MM-DD");
 
-    return this.passages.filter((passage) =>
-      this.findPassagesForThisWeek(moment(today), passage, classType)
+    console.log(
+      "hey",
+      passages.filter((passage) =>
+        this.isPassageForThisWeek(moment(today), passage, classType)
+      )
+    );
+
+    return passages.filter((passage) =>
+      this.isPassageForThisWeek(moment(today), passage, classType)
     );
   }
 
-  /** 전체 암송 구절 얻어오기 */
-  getAllPassages() {
-    return this.passages;
+  updatePassage(data: UpdatePassageRequest) {
+    const passageDoc = doc(db, "passages", data.id);
+    return updateDoc(passageDoc, data);
   }
+
+  addPassage(data: AddPassageRequest) {
+    return addDoc(this.passagesRef, data);
+  }
+
+  /**
+   * 전체 암송 데이터 fetch
+   */
+  async getPassages() {
+    const data = await getDocs(this.passagesRef);
+    const docs = data.docs.map((doc) => {
+      return {
+        ...doc.data(),
+        id: doc.id,
+      } as Passage;
+    });
+    return docs;
+  }
+
+  /** 전체 암송 구절 얻어오기 */
+  // getAllPassages() {
+  //   return this.passages;
+  // }
 }
+
+export default new PassageService();

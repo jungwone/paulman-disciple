@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import PassageCard from "../components/PassageCard";
-import { Passage } from "../data";
+import { Passage } from "../types";
 
 interface Props {
   passages: Passage[];

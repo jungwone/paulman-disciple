@@ -1,6 +1,6 @@
-import { Passage } from "../../data";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { Passage } from "../../types";
 
 interface Props {
   passage: Passage;

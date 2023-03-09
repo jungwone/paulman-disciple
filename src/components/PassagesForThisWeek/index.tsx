@@ -1,8 +1,8 @@
-import { Passage } from "../../data";
 import PassageCard from "../PassageCard";
 import styled from "@emotion/styled";
-import { ClassType } from "../App";
 import { css } from "@emotion/react";
+import { ClassType, Passage } from "../../types";
+import { Heading } from "@chakra-ui/react";
 
 interface Props {
   passages: Passage[];
@@ -17,28 +17,30 @@ const PassagesForThisWeek = ({
 }: Props) => {
   return (
     <Wrapper>
-      <h2>이번주 암송✨</h2>
+      <Heading as={"h2"} size="lg" mb={6}>
+        이번주 암송✨
+      </Heading>
       <ClassTypeSection>
-        <Button
-          selected={classType === "sunday"}
+        <Tab
+          selected={classType === "thursday"}
+          onClick={() => {
+            onClickClassType("thursday");
+          }}
           style={{ marginRight: "8px" }}
+        >
+          목요일반
+        </Tab>
+        <Tab
+          selected={classType === "sunday"}
           onClick={() => {
             onClickClassType("sunday");
           }}
         >
           주일반
-        </Button>
-        <Button
-          selected={classType === "tuesday"}
-          onClick={() => {
-            onClickClassType("tuesday");
-          }}
-        >
-          화요일반
-        </Button>
+        </Tab>
       </ClassTypeSection>
 
-      <ul style={{ textAlign: "center" }}>
+      <ul style={{ textAlign: "center", marginTop: "32px" }}>
         {passages.map((passage) => (
           <li key={passage.address}>
             <PassageCard passage={passage} />
@@ -60,13 +62,13 @@ const ClassTypeSection = styled.div`
   padding-right: 1em;
 `;
 
-const Button = styled.button<{ selected: boolean }>`
+const Tab = styled.button<{ selected: boolean }>`
   height: 36px;
   border-radius: 30px;
   background-color: #fff;
   outline: none;
-  cursor: pointer;
   border: 1px solid gray;
+  padding: 0 1rem;
 
   ${(props) =>
     props.selected &&
