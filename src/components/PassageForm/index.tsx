@@ -63,6 +63,8 @@ const PassageForm = ({
       <form onSubmit={handleSubmit}>
         <div>
           <Input
+            placeholder="말씀 주소(예: 롬3:8-9)"
+            name="address"
             variant="filled"
             defaultValue={passageData.address}
             onChange={handleInputChange}
@@ -113,7 +115,7 @@ const PassageForm = ({
 
           <Textarea
             name="content"
-            placeholder="말씀을 입력해주세요."
+            placeholder="말씀을 입력해주세요(엔터 없이)."
             mb={4}
             mt={4}
             defaultValue={passageData.content}
@@ -130,7 +132,7 @@ const PassageForm = ({
 };
 export default PassageForm;
 
-const Wrapper = styled.li`
+const Wrapper = styled.div`
   text-align: left;
   border-radius: 24px;
   box-shadow: 5px 6px 15px 0px rgba(0, 0, 0, 0.8);
