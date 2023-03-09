@@ -75,6 +75,7 @@ const Wrapper = styled.div`
   right: 0;
   top: 0;
   padding-top: 20px;
+  z-index: 10;
 
   &.hide {
     transform: translateX(100vw);

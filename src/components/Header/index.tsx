@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SlideMenu from "../SlideMenu";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -38,11 +39,11 @@ const Header = () => {
             </button>
           )}
         </InnerSection>
-        <div>
+        <Box display={"flex"} justifyContent="center">
           <Link to={"/"}>
             <img src={LogoImage} alt="paul man" width={80} />
           </Link>
-        </div>
+        </Box>
         <InnerSection>
           <Button
             visible={!isSlideMenuVisible}
