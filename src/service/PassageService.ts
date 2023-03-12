@@ -35,7 +35,7 @@ class PassageService {
 
     if (classType === "thursday") {
       startDate = passage.start_date_a;
-      endDate = passage.end_date_b;
+      endDate = passage.end_date_a;
     } else {
       startDate = passage.start_date_b;
       endDate = passage.end_date_b;
@@ -63,7 +63,6 @@ class PassageService {
     ) {
       return true;
     }
-
     return false;
   }
 
